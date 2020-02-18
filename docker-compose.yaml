@@ -1,0 +1,31 @@
+version: "3"
+services:
+
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - "6380:6379"
+  redis-admin:
+    image: erikdubbelboer/phpredisadmin
+    restart: always
+    ports:
+      - "8088:80"
+    environment:
+      REDIS_1_HOST: redis
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_PASSWORD: ${PASSWORD}
+      PGADMIN_DEFAULT_EMAIL: ${EMAIL}
+    ports:
+      - "8080:80"
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${TYPEORM_PASSWORD}
+      POSTGRES_DB: ${TYPEORM_DATABASE}
+    ports:
+    - "5433:5432"

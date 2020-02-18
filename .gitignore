@@ -1,0 +1,6 @@
+.idea
+.env
+schema.gql
+node_modules
+dist
+package-lock.json
